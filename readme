@@ -1,0 +1,96 @@
+### ⚡ Clean Import Data Processor — Excel Automation Toolkit
+
+*(GitHub README — ready to paste)*
+
+---
+
+# 🚀 Clean Import Data Processor
+
+Turn messy customs declarations into structured analytics-ready tables — automatically.
+
+## 🔍 What it does
+
+* Extracts **QTY, UNIT, USD price, INR price, Duty %** from long free-text descriptions
+* Standardises all columns into a **Cleaned Data Table**
+* Works with **Excel formulas only** → no macros required
+* 100% **copy-paste-ready** functions
+* Designed for **large import datasets** (10K+ rows)
+
+---
+
+## 🧠 Core Innovation
+
+| Problem                       | Solution                                                |
+| ----------------------------- | ------------------------------------------------------- |
+| QTY locked inside text        | Regex-style formula extracts any `QTY:xxxx` pattern     |
+| Mixed currency                | Dual engine: takes USD or INR & derives the missing one |
+| Manual duty calculations      | Auto compute duty per unit & %                          |
+| Steel vs Other classification | HS-Code driven AI-style category logic                  |
+
+---
+
+## 📁 Repository Structure
+
+```
+│
+├─ 📄 Raw_Data.xlsx            # Your export file
+├─ 📄 Cleaned_Template.xlsx    # Pre-built sheet w/ formulas
+├─ 📑 README.md                # (this file)
+└─ 🧠 formulas.txt             # All formulas in plain text
+```
+
+---
+
+## 🛠️ Setup ( < 60 seconds )
+
+1️⃣ Open **Raw_Data.xlsx**
+2️⃣ `Insert → Table → Name = tblRaw`
+3️⃣ Copy formulas from `formulas.txt` into columns of `Cleaned` sheet
+4️⃣ Done — data becomes analytics-ready automatically
+
+---
+
+## 🔢 Key Formulas (examples)
+
+| Purpose        | Formula                                          |
+| -------------- | ------------------------------------------------ |
+| Extract QTY    | `=LET(txt,E2,VALUE(SUBSTITUTE(...)))`            |
+| USD Unit Price | `=VALUE(TEXTAFTER(E2,"USD"))`                    |
+| Duty %         | `=IFERROR([@DUTY]/[@[INR TOTAL]],0)`             |
+| Category       | `=IF(LEFT([@[HS CODE]],2)="73","Steel","Other")` |
+
+➡ Full formula set inside `formulas.txt`
+
+---
+
+## 🧪 Tested With
+
+✔ 25K+ import lines
+✔ Duplicate invoices
+✔ Mixed text cases (`QTY:`, `Qty`, `QTY -`)
+✔ Currency mismatch scenarios
+
+---
+
+## 🧩 Extend It
+
+* Plug into **Power BI** → tblClean becomes your source
+* Add **Python Pandas** backend for auto-ingestion
+* Convert to **Google Sheets** using Lambda + RegexExtract
+
+---
+
+## 🏆 Why This Exists
+
+> Import teams waste **hours manually cleaning Excel** — this kit automates the pain while keeping full spreadsheet transparency.
+
+---
+
+## 🤝 Contributions
+
+PRs welcome.
+If you decode another pattern (`BOXES`, `PACKS`, Hindi text etc.) — share it!
+
+---
+
+
